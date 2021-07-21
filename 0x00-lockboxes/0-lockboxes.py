@@ -7,6 +7,7 @@ recursing through the boxes
 """
 from collections import OrderedDict
 
+
 def box_recurse(boxes, unlocked, box):
     """
     boxes: list of lockboxes
