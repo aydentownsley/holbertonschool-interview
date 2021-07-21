@@ -16,6 +16,8 @@ def box_recurse(boxes, unlocked, box):
     if len(unlocked) == len(boxes):
         return True
     for key in boxes[box]:
+        if len(boxes[box]) == len(boxes):
+            return True
         if key not in unlocked and key < len(boxes):
             unlocked.append(key)
             unlocked.sort()
