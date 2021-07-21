@@ -5,7 +5,7 @@ LockBox Module
 This module houses the defs for
 recursing through the boxes
 """
-
+from collections import OrderedDict
 
 def box_recurse(boxes, unlocked, box):
     """
@@ -16,7 +16,7 @@ def box_recurse(boxes, unlocked, box):
     if len(unlocked) == len(boxes):
         return True
     for key in boxes[box]:
-        if len(boxes[box]) == len(boxes):
+        if len(list(OrderedDict.fromkeys(boxes[box]))) == len(boxes):
             return True
         if key not in unlocked and key < len(boxes):
             unlocked.append(key)
