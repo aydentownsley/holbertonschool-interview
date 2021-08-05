@@ -2,29 +2,27 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_node - creates a binary tree node
+ * fix_heap: fixes order of heap
  *
- * @parent: the parent node
- * @value: the value of the node
- *
- * Return: a pointer to the newly created node.
+ * @node: node to move
+ * Return: node
  */
-binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
+heap_t *fix_heap(heap_t *node)
 {
-	binary_tree_t *node = malloc(sizeof(binary_tree_t));
+	heap_t *tmp;
+	int tmp_n = 0;
 
-	if (node == NULL)
-		return (NULL);
-
-	node->n = value;
-
-	if (parent == NULL)
-		node->parent = NULL;
-	else
-		node->parent = parent;
-
-	node->left = NULL;
-	node->right = NULL;
+	while (node != NULL && node->parent != NULL)
+	{
+		while (node->n > node->parent->n)
+		{
+			tmp = node;
+			tmp_n = node->n;
+			node = node->parent;
+			tmp->n = node->n;
+			node->n = tmp_n;
+		}
+	}
 	return (node);
 }
 
@@ -38,16 +36,39 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	binary_tree_t *node = NULL;
+	heap_t *node, *curr = *root;
 
-	node = binary_tree_node(*root, value);
+	/* start tree if empty */
+	if (*root == NULL)
+	{
+		node = binary_tree_node(*root, value);
+		*root = node;
+		return (*root);
+	}
 
-	if (node == NULL)
-		return (NULL);
+	/* traverse to first null pos in heap */
+	while (curr != NULL)
+	{
+		node = curr;
 
-	node->left = NULL;
-	node->right = NULL;
-	node->parent = *root;
+		if (curr->n == value)
+			return (fix_heap(curr));
 
-	return (node);
+		if (curr->n < value)
+			curr = curr->left;
+		else
+			curr = curr->right;
+
+	}
+
+	if (node->n > value)
+	{
+		node->right = binary_tree_node(node, value);
+		return (node->right);
+	}
+	else
+	{
+		node->left = binary_tree_node(node, value);
+		return (node->left);
+	}
 }
