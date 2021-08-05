@@ -58,9 +58,8 @@ heap_t *heap_insert(heap_t **root, int value)
 
 	}
 
-	/* need to fix heap somehow before adding node
-	* fix_heap(curr);
-	*/
+	/* need to fix heap somehow before adding node */
+	/* fix_heap(curr); */
 
 	if (node->n > value)
 	{
