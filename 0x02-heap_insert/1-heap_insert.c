@@ -2,7 +2,7 @@
 #include "binary_trees.h"
 
 /**
- * fix_heap: fixes order of heap
+ * fix_heap - fixes order of heap
  *
  * @node: node to move
  * Return: node
@@ -46,13 +46,10 @@ heap_t *heap_insert(heap_t **root, int value)
 		return (*root);
 	}
 
-	/* traverse to first null pos in heap */
+	/* traverse to first null pos in heap or send to fix */
 	while (curr != NULL)
 	{
 		node = curr;
-
-		if (curr->n == value)
-			return (fix_heap(curr));
 
 		if (curr->n < value)
 			curr = curr->left;
@@ -60,6 +57,10 @@ heap_t *heap_insert(heap_t **root, int value)
 			curr = curr->right;
 
 	}
+
+	/* need to fix heap somehow before adding node
+	* fix_heap(curr);
+	*/
 
 	if (node->n > value)
 	{
