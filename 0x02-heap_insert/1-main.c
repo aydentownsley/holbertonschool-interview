@@ -2,56 +2,37 @@
 #include <stdio.h>
 #include "binary_trees.h"
 
-/**
- * _binary_tree_delete - Deallocate a binary tree
- *
- * @tree: Pointer to the root of the tree to delete
- */
-static void _binary_tree_delete(binary_tree_t *tree)
-{
-    if (tree)
-    {
-        _binary_tree_delete(tree->left);
-        _binary_tree_delete(tree->right);
-        free(tree);
-    }
-}
+/* Our own functions */
+void binary_tree_print(const binary_tree_t *tree);
+void _binary_tree_delete(binary_tree_t *tree);
 
 /**
  * main - Entry point
  *
- * Return: 0 on success, error code on failure
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-    heap_t *root;
-    heap_t *node;
+	heap_t *root;
+	heap_t *node;
+	int array[] = {
+		234, 123, 110, 98, 78, 76, 56, 43, 2
+	};
+	size_t size = sizeof(array) / sizeof(array[0]);
+	size_t i;
 
-    root = NULL;
-    node = heap_insert(&root, 98);
-    printf("Inserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 402);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 12);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 46);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 128);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 256);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 512);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    node = heap_insert(&root, 50);
-    printf("\nInserted: %d\n", node->n);
-    binary_tree_print(root);
-    _binary_tree_delete(root);
-    return (0);
+	root = NULL;
+	for (i = 0; i < size; i++)
+	{
+		node = heap_insert(&root, array[i]);
+		if (node)
+			printf("Value inserted: %d\n", node->n);
+		else
+		{
+			printf("Value not inserted: %d\n", array[i]);
+		}
+	}
+
+	binary_tree_print(root);
+	return (0);
 }
