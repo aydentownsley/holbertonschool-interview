@@ -61,14 +61,16 @@ heap_t *heap_insert(heap_t **root, int value)
 	/* need to fix heap somehow before adding node */
 	/* fix_heap(curr); */
 
-	if (node->n > value)
+	if (node->left == NULL)
+	{
+		node->left = binary_tree_node(node, value);
+		return (node->left);
+	}
+	else if (node->right == NULL)
 	{
 		node->right = binary_tree_node(node, value);
 		return (node->right);
 	}
 	else
-	{
-		node->left = binary_tree_node(node, value);
-		return (node->left);
-	}
+		return (NULL);
 }
