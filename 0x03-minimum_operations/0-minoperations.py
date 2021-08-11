@@ -2,6 +2,7 @@
 """ Minimum ops Module
 """
 
+
 def minOperations(n):
     """
     Args: n [integer]
@@ -14,6 +15,8 @@ def minOperations(n):
     Even: unknown
     Modulo by 3: n/3 + 3
     """
+    if (n <= 0):
+        return 0
     curr = 1
     pasteVal = 1
     ops = 1
@@ -52,12 +55,12 @@ def isPrime(n):
              False if not
     """
     if n < 2:
-         return False;
+        return False
     if n % 2 == 0:
-         return n == 2
+        return n == 2
     k = 3
     while k*k <= n:
-         if n % k == 0:
-             return False
-         k += 2
+        if n % k == 0:
+            return False
+        k += 2
     return True
