@@ -23,7 +23,7 @@ def minOperations(n):
                 div1 = num
                 div2 = n / num
             num += 1
-        print("num1: {}, num2: {}".format(int(div1), int(div2)))
+        # print("num1: {}, num2: {}".format(int(div1), int(div2)))
         while curr != n:
             if curr + pasteVal > n:
                 break
