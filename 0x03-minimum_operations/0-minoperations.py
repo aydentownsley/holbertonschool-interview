@@ -28,16 +28,16 @@ def minOperations(n):
                 div2 = n / num
             num += 1
         # print("num1: {}, num2: {}".format(int(div1), int(div2)))
-        while curr != n:
-            if curr + pasteVal > n:
-                break
-            curr = curr + pasteVal
-            ops += 1
-            if curr * 2 > n:
-                break
-            pasteVal = curr * 2
-            ops += 2
-        return ops
+        # while curr != n:
+        #     if curr + pasteVal > n:
+        #         break
+        #     curr = curr + pasteVal
+        #     ops += 1
+        #     if curr * 2 > n:
+        #         break
+        #     pasteVal = curr * 2
+        #     ops += 2
+        return (int(div2) + minOperations(div1))
     elif (n % 3 == 0):
         if n == 3:
             return 3
