@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-
+""" Minimum ops Module
+"""
 
 def minOperations(n):
     """
