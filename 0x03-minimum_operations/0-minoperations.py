@@ -17,12 +17,16 @@ def minOperations(n):
     """
     if n <= 0:
         return 0
+    elif isPrime(n) is True:
+        return n + 1
     else:
         res = 0
-        for i in range(2, n):
+        i = 2
+        while (i <= n):
             while (n % i == 0):
-                res += i
+                res = res + i
                 n = n / i
+            i = i + 1
         return res
 
 
