@@ -15,35 +15,21 @@ def minOperations(n):
     Even: unknown
     Modulo by 3: n/3 + 3
     """
-    if (n <= 0):
+    if n <= 0:
         return 0
-    curr = 1
-    pasteVal = 1
-    ops = 1
-    if n % 2 == 0:
-        num = 1
-        while (num < n / 2):
-            if (n % num == 0):
-                div1 = num
-                div2 = n / num
-            num += 1
-        # print("num1: {}, num2: {}".format(int(div1), int(div2)))
-        # while curr != n:
-        #     if curr + pasteVal > n:
-        #         break
-        #     curr = curr + pasteVal
-        #     ops += 1
-        #     if curr * 2 > n:
-        #         break
-        #     pasteVal = curr * 2
-        #     ops += 2
-        return (int(div2) + minOperations(div1))
-    elif (n % 3 == 0):
+    elif n % 3 == 0:
         if n == 3:
             return 3
         return int(n / 3 + 3)
+    elif isPrime(n) is True:
+        return n + 1
     else:
-        return n - 1
+        res = 0
+        for i in range(2, n):
+            while (n % i == 0):
+                res += i
+                n = n / i
+        return res
 
 
 def isPrime(n):
