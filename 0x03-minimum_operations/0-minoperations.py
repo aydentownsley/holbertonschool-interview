@@ -17,10 +17,6 @@ def minOperations(n):
     """
     if n <= 0:
         return 0
-    elif n % 3 == 0:
-        if n == 3:
-            return 3
-        return int(n / 3 + 3)
     elif isPrime(n) is True:
         return n + 1
     else:
