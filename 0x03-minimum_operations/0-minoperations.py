@@ -17,8 +17,6 @@ def minOperations(n):
     """
     if n <= 0:
         return 0
-    elif isPrime(n) is True:
-        return n + 1
     else:
         res = 0
         for i in range(2, n):
