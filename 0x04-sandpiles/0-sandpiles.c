@@ -47,6 +47,13 @@ bool stable(int grid1[3][3])
 	return (true);
 }
 
+/**
+ * copy_grid - copies grid for "memory"
+ * @grid: grid to copy
+ * @copy: copy of grid
+ *
+ * Return: Void
+ */
 void copy_grid(int grid[3][3], int copy[3][3])
 {
 	int x, y;
