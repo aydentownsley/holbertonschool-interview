@@ -47,6 +47,19 @@ bool stable(int grid1[3][3])
 	return (true);
 }
 
+void copy_grid(int grid[3][3], int copy[3][3])
+{
+	int x, y;
+
+	for (x = 0; x < 3; x++)
+	{
+		for (y = 0; y < 3; y++)
+		{
+			copy[x][y] = grid[x][y];
+		}
+	}
+}
+
 /**
  * sandpiles_sum - returns a stable sum of two sandpile
  *
@@ -58,6 +71,7 @@ bool stable(int grid1[3][3])
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int x, y, a, b, c, d;
+	int old_grid[3][3];
 
 	for (x = 0; x < 3; x++)
 	{
@@ -67,17 +81,17 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		}
 	}
 
-
 	while (stable(grid1) == false)
 	{
 		printf("=\n");
 		print_grid(grid1);
+		copy_grid(grid1, old_grid);
 
 		for (x = 0; x < 3; x++)
 		{
 			for (y = 0; y < 3; y++)
 			{
-				if (grid1[x][y] > 3)
+				if (old_grid[x][y] > 3)
 				{
 					a = x + 1;
 					b = x - 1;
