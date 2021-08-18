@@ -10,18 +10,18 @@
  */
 static void print_grid(int grid[3][3])
 {
-    int i, j;
+	int i, j;
 
-    for (i = 0; i < 3; i++)
-    {
-        for (j = 0; j < 3; j++)
-        {
-            if (j)
-                printf(" ");
-            printf("%d", grid[i][j]);
-        }
-        printf("\n");
-    }
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			if (j)
+				printf(" ");
+			printf("%d", grid[i][j]);
+		}
+		printf("\n");
+	}
 }
 
 /**
@@ -34,17 +34,17 @@ static void print_grid(int grid[3][3])
  */
 bool stable(int grid1[3][3])
 {
-    int x, y;
+	int x, y;
 
-    for (x = 0; x < 3; x++)
-    {
-        for (y = 0; y < 3; y++)
-        {
-            if (grid1[x][y] > 3)
-                return (false);
-        }
-    }
-    return (true);
+	for (x = 0; x < 3; x++)
+	{
+		for (y = 0; y < 3; y++)
+		{
+			if (grid1[x][y] > 3)
+				return (false);
+		}
+	}
+	return (true);
 }
 
 /**
@@ -57,43 +57,43 @@ bool stable(int grid1[3][3])
  */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-    int x, y, a, b, c, d;
+	int x, y, a, b, c, d;
 
-    for (x = 0; x < 3; x++)
-    {
-        for (y = 0; y < 3; y++)
-        {
-            grid1[x][y] += grid2[x][y];
-        }
-    }
+	for (x = 0; x < 3; x++)
+	{
+		for (y = 0; y < 3; y++)
+		{
+			grid1[x][y] += grid2[x][y];
+		}
+	}
 
 
-    while (stable(grid1) == false)
-    {
-        printf("=\n");
-        print_grid(grid1);
+	while (stable(grid1) == false)
+	{
+		printf("=\n");
+		print_grid(grid1);
 
-        for (x = 0; x < 3; x++)
-        {
-            for (y = 0; y < 3; y++)
-            {
-                if (grid1[x][y] > 3)
-                {
-                    a = x + 1;
-                    b = x - 1;
-                    c = y + 1;
-                    d = y - 1;
-                    grid1[x][y] -= 4;
-                    if (a >= 0 && a <= 2)
-                        grid1[a][y] += 1;
-                    if (b >= 0 && b <= 2)
-                        grid1[b][y] += 1;
-                    if (c >= 0 && c <= 2)
-                        grid1[x][c] += 1;
-                    if (d >= 0 && d <= 2)
-                        grid1[x][d] += 1;
-                }
-            }
-        }
-    }
+		for (x = 0; x < 3; x++)
+		{
+			for (y = 0; y < 3; y++)
+			{
+				if (grid1[x][y] > 3)
+				{
+					a = x + 1;
+					b = x - 1;
+					c = y + 1;
+					d = y - 1;
+					grid1[x][y] -= 4;
+					if (a >= 0 && a <= 2)
+						grid1[a][y] += 1;
+					if (b >= 0 && b <= 2)
+						grid1[b][y] += 1;
+					if (c >= 0 && c <= 2)
+						grid1[x][c] += 1;
+					if (d >= 0 && d <= 2)
+						grid1[x][d] += 1;
+				}
+			}
+		}
+	}
 }
