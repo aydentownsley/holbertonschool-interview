@@ -13,7 +13,7 @@ int is_palindrome(listint_t **head)
 {
 	int count, j, i = 0;
 	listint_t *cursor;
-	int array[7000];
+	int array[50000];
 
 	if (*head == NULL || head == NULL)
 		return (1);
