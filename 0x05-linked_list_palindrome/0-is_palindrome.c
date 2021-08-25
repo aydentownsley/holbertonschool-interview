@@ -20,6 +20,9 @@ int is_palindrome(listint_t **head)
 		i++;
 	}
 
+	if (i == 0)
+		return (1);
+
 	cursor = *head;
 	for (idx = 0; idx < i; idx++)
 	{
