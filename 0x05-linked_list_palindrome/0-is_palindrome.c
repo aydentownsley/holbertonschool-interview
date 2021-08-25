@@ -15,20 +15,21 @@ int is_palindrome(listint_t **head)
 	listint_t *cursor;
 	int array[5000];
 
-	if (*head == NULL)
+	if (*head == NULL || head == NULL)
 		return (0);
 
 	cursor = *head;
 
-	while (cursor->next != NULL)
+	while (cursor != NULL)
 	{
 		array[count] = cursor->n;
+		printf("%d\n", array[count]);
 		count++;
 		cursor = cursor->next;
 	}
 
-	j = count - 2;
-	for (i = 0; i < count / 2; i++, j--)
+	j = count - 1;
+	for (i = 0; i <= count / 2; i++, j--)
 	{
 		if (array[i] != array[j])
 			return (0);
