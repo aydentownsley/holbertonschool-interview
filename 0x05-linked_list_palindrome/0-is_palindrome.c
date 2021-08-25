@@ -11,34 +11,26 @@
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *cursor, *tailcheck;
-	int i = 0, idx = 0, itr = 0;
+	int count, j, i = 0;
+	listint_t *cursor;
+	int array[5000];
 
-	if (head == NULL || *head == NULL)
-		return (1);
+	if (*head == NULL)
+		return (0);
 
 	cursor = *head;
-	tailcheck = *head;
 
-	while (cursor->next)
+	while (cursor->next != NULL)
 	{
+		array[count] = cursor->n;
+		count++;
 		cursor = cursor->next;
-		i++;
 	}
 
-	cursor = *head;
-	for (idx = 0; idx < i; idx++)
+	j = count - 2;
+	for (i = 0; i < count / 2; i++, j--)
 	{
-		tailcheck = *head;
-		itr = 0;
-		while (itr < (i - idx))
-		{
-			tailcheck = tailcheck->next;
-			itr++;
-		}
-		if (tailcheck->n == cursor->n)
-			cursor = cursor->next;
-		else
+		if (array[i] != array[j])
 			return (0);
 	}
 
