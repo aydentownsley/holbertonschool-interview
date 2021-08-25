@@ -23,7 +23,6 @@ int is_palindrome(listint_t **head)
 	while (cursor != NULL)
 	{
 		array[count] = cursor->n;
-		printf("%d\n", array[count]);
 		count++;
 		cursor = cursor->next;
 	}
