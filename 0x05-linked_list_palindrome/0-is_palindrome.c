@@ -20,7 +20,7 @@ int is_palindrome(listint_t **head)
 		i++;
 	}
 
-	if (i == 0)
+	if (i == 0 || head == NULL)
 		return (1);
 
 	cursor = *head;
