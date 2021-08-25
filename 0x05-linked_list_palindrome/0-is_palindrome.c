@@ -14,8 +14,8 @@ int is_palindrome(listint_t **head)
 	listint_t *cursor, *tailcheck;
 	int i = 0, idx = 0, itr = 0;
 
-	if (head == NULL)
-		return (0);
+	if (head == NULL || *head == NULL)
+		return (1);
 
 	cursor = *head;
 	tailcheck = *head;
