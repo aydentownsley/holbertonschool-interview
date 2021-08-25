@@ -11,17 +11,20 @@
 
 int is_palindrome(listint_t **head)
 {
-	listint_t *cursor = *head, *tailcheck = *head;
+	listint_t *cursor, *tailcheck;
 	int i = 0, idx = 0, itr = 0;
+
+	if (head == NULL)
+		return (0);
+
+	cursor = *head;
+	tailcheck = *head;
 
 	while (cursor->next)
 	{
 		cursor = cursor->next;
 		i++;
 	}
-
-	if (i == 0 || head == NULL)
-		return (1);
 
 	cursor = *head;
 	for (idx = 0; idx < i; idx++)
