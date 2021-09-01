@@ -37,6 +37,15 @@ try:
                 status_code[x[7]] += 1
             line_count += 1
         else:
+            x = line.split()
+            if x[len(x) - 1] is not None:
+                try:
+                    size += int(x[len(x) - 1])
+                except ValueError:
+                    pass
+                if x[len(x) - 2] is not None:
+                    if x[len(x) - 2] in status_code:
+                        status_code[x[len(x) - 2]] += 1
             line_count += 1
         if line_count == 10:
                 line_count = 0
