@@ -25,7 +25,7 @@ pattern = ip + date + api + err_size
 status_code = {"200": 0, "301": 0, "400": 0,
                "401": 0, "403": 0, "404": 0,
                "405": 0, "500": 0}
-line_count = 0
+line_count = 1
 size = 0
 
 try:
@@ -44,6 +44,10 @@ try:
                 for key, value in sorted(status_code.items()):
                     if value != 0:
                         print("{}: {}".format(key, value))
+    print("File size: {:d}".format(size))
+    for key, value in sorted(status_code.items()):
+        if value != 0:
+            print("{}: {}".format(key, value))
 except KeyboardInterrupt:
     print("File size: {:d}".format(size))
     for key, value in status_code.items():
