@@ -14,6 +14,7 @@ from time import sleep
 import datetime
 import re
 import signal
+from collections import OrderedDict
 
 
 ip = "^(?:[0-9]{1,3}\.){3}[0-9]{1,3}"
@@ -37,10 +38,12 @@ try:
             line_count += 1
         else:
             line_count += 1
-        if line_count % 10 == 0:
+        if line_count == 10:
+                line_count = 0
                 print("File size: {:d}".format(size))
-                for key, value in status_code.items():
-                    print("{}: {}".format(key, value))
+                for key, value in sorted(status_code.items()):
+                    if value != 0:
+                        print("{}: {}".format(key, value))
 except KeyboardInterrupt:
     print("File size: {:d}".format(size))
     for key, value in status_code.items():
