@@ -1,10 +1,20 @@
 #!/usr/bin/python3
+"""
+Log Parsing Script
+------------------
+This script takes input from
+stdout and parses the strings
+for the desired data.
+It keeps a running total
+of size and API status codes
+"""
 import random
 import sys
 from time import sleep
 import datetime
 import re
 import signal
+
 
 ip = "^(?:[0-9]{1,3}\.){3}[0-9]{1,3}"
 date = " - \[\d{4}-\d{2}-\d{2} |d{2}:\d{2}:\d{2}\.\d{6}\]"
