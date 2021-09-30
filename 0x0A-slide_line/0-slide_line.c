@@ -3,19 +3,118 @@
 #include "slide_line.h"
 
 /**
+ * slide_left - slide line left and combine
+ * @line: line to slide
+ * @new_line: new line
+ * @size: size of line
+ */
+void slide_left(int *line, int *new_line, size_t size)
+{
+	size_t i = 0;
+	int k = 0, l = size, temp = 0, pos = 0;
+
+	for (i = 0; i < size; i++)
+	{
+		if (line[i] != 0)
+		{
+			if (temp == line[i])
+			{
+				line[pos] = temp + line[i];
+				line[i] = 0;
+				temp = 0;
+				pos = 0;
+			}
+			else
+			{
+				pos = i;
+				temp = line[i];
+			}
+		}
+		else
+			continue;
+	}
+	for (i = 0, k = 0; i < size; i++)
+	{
+		if (line[i] == 0)
+			continue;
+		else
+		{
+			new_line[k] = line[i];
+			k++;
+		}
+	}
+	while (k <= l)
+	{
+		new_line[k] = 0;
+		k++;
+	}
+	for (i = 0; i < size; i++)
+		line[i] = new_line[i];
+}
+
+/**
+ * slide_right - slide line right and combine
+ * @line: line to slide
+ * @new_line: new line
+ * @size: size of line
+ */
+void slide_right(int *line, int *new_line, size_t size)
+{
+	size_t i = 0;
+	int k = 0, temp = 0, pos = 0;
+
+	for (i = 0; i < size; i++)
+	{
+		if (line[i] != 0)
+		{
+			if (temp == line[i])
+			{
+				line[pos] = temp + line[i];
+				line[i] = 0;
+				temp = 0;
+				pos = 0;
+			}
+			else
+			{
+				pos = i;
+				temp = line[i];
+			}
+		}
+		else
+			continue;
+	}
+	for (i = size, k = size; i > 0; i--)
+	{
+		if (line[i] == 0)
+			continue;
+		else
+		{
+			new_line[k] = line[i];
+			k--;
+		}
+	}
+	while (k >= 0)
+	{
+		new_line[k] = 0;
+		k--;
+	}
+	for (i = 0; i < size; i++)
+		line[i] = new_line[i];
+}
+
+/**
  * slide_line - slide array values in array and add when
  * appropriate
  *
  * @line: Pointer to the array
  * @size: Number of elements in @line
  * @direction: direction to slide elementes in @line
+ *
+ * Return: 1 on success, or 0 on failure
  */
 
 int slide_line(int *line, size_t size, int direction)
 {
-	size_t i;
-	int k, l = size;
-	int temp = 0, pos = 0;
 	int new_line[LINE_SIZE];
 
 	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
@@ -28,104 +127,10 @@ int slide_line(int *line, size_t size, int direction)
 		return (0);
 
 	if (direction == SLIDE_LEFT)
-	{
-		/* combines compatible values of new_line */
-		for (i = 0; i < size; i++)
-		{
-			if (line[i] != 0)
-			{
-				if (temp == line[i])
-				{
-					line[pos] = temp + line[i];
-					line[i] = 0;
-					temp = 0;
-					pos = 0;
-				}
-				else
-				{
-					pos = i;
-					temp = line[i];
-				}
-			}
-			else
-				continue;
-		}
-
-		/** copies values from line to new_line while shifting them
-		 * to the leftmost position possible
-		 */
-		for (i = 0, k = 0; i < size; i++)
-		{
-			if (line[i] == 0)
-				continue;
-			else
-			{
-				new_line[k] = line[i];
-				k++;
-			}
-		}
-
-		/* fills remaining spaces of new_line with 0 */
-		while (k <= l)
-		{
-			new_line[k] = 0;
-			k++;
-		}
-
-		/* copies values from new_line to line */
-		for (i = 0; i < size; i++)
-			line[i] = new_line[i];
-	}
+		slide_left(line, new_line, size);
 
 	if (direction == SLIDE_RIGHT)
-	{
-		/* combines compatible values of new_line */
-		for (i = 0; i < size; i++)
-		{
-			if (line[i] != 0)
-			{
-				if (temp == line[i])
-				{
-					line[pos] = temp + line[i];
-					line[i] = 0;
-					temp = 0;
-					pos = 0;
-				}
-				else
-				{
-					pos = i;
-					temp = line[i];
-				}
-			}
-			else
-				continue;
-		}
-
-		/** copies values from line to new_line while shifting them
-		 * to the rightmost position possible
-		 */
-		for (i = size, k = size; i > 0; i--)
-		{
-			if (line[i] == 0)
-				continue;
-			else
-			{
-				new_line[k] = line[i];
-				k--;
-			}
-		}
-
-		/* fills remaining spaces of new_line with 0 */
-		while (k >= 0)
-		{
-			new_line[k] = 0;
-			k--;
-		}
-
-		/* copies values from new_line to line */
-		for (i = 0; i < size; i++)
-			line[i] = new_line[i];
-	}
+		slide_right(line, new_line, size);
 
 	return (1);
 }
