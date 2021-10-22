@@ -54,10 +54,12 @@ def diag_full(board, row, col):
                 return True
     return False
 
-def print_board(board, size):
+
+def print_board(board, s):
     """ prints board """
-    queens = [[i, j] for i in range(size) for j in range(size) if board[i][j] == 1]
+    queens = [[i, j] for i in range(s) for j in range(s) if board[i][j] == 1]
     print(queens)
+
 
 def n_queens():
     """ create chess board """
@@ -89,4 +91,4 @@ def solve_board(pos, queens, board):
 
 
 if __name__ == "__main__":
-	n_queens()
+    n_queens()
