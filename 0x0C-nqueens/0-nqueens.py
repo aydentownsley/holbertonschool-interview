@@ -21,21 +21,19 @@ def board_size():
 
 
 def row_full(board, row):
-    """checks if row is full
-    """
+    """checks if row is full"""
     for full in board[row]:
-        if (full == 1):
+        if full:
             return True
     return False
 
 
 def col_full(board, col):
-    """checks if col is full
-    """
+    """checks if col is full """
     board_size = len(board[0])
     for row in range(board_size):
         full = board[row][col]
-        if full == 1:
+        if full:
             return True
     return False
 
@@ -43,15 +41,16 @@ def col_full(board, col):
 def diag_full(board, row, col):
     """checks if diagonal is full
     """
-    for x in range(row, -1, -1):
-            if (board[x][x] == 1):
-                return True
-    return False
+    for x, y in zip(range(row, -1, -1),
+                    range(col, -1, -1)):
+        if board[x][y]:
+            return True
 
-    for x in range(row, len(board), 1):
-        for y in range(col, -1, -1):
-            if (board[x][y] == 1):
-                return True
+    for x, y in zip(range(row, len(board[0]), 1),
+                    range(col, -1, -1)):
+        if board[x][y]:
+            return True
+
     return False
 
 
@@ -64,7 +63,7 @@ def print_board(board, s):
 def n_queens():
     """ create chess board """
     size = board_size()
-    board = [[0 for j in range(size)] for i in range(size)]
+    board = [[False for j in range(size)] for i in range(size)]
     solve_board(0, 0, board)
 
 
