@@ -45,9 +45,9 @@ def is_valid(board):
         for other in queens:
             x1, y1 = queen[0], queen[1]
             x2, y2 = other[0], other[1]
-            if x1 == x2 or y1 == y2:
+            if x1 == x2 and y1 == y2:
                 continue
-            elif x1 == x2 and y1 == y2:
+            elif x1 == x2 or y1 == y2:
                 return False
             elif (abs((x1 - x2) / (y1 - y2)) == 1):
                 return False
