@@ -51,6 +51,8 @@ avl_t *smart_insert(int *array, int begin, int end, avl_t *root)
 
 	mid = (begin + end) / 2;
 	root = create_node(root, array[mid]);
+	if (root == NULL)
+		return (NULL);
 
 	root->left = smart_insert(array, begin, mid - 1, root);
 	root->right = smart_insert(array, mid + 1, end, root);
