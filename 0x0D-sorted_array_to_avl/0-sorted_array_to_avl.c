@@ -31,7 +31,7 @@ avl_t *smart_insert(int *array, int begin, int end)
 	root->left = smart_insert(array, begin, mid - 1);
 	root->right = smart_insert(array, mid + 1, end);
 
-	return root;
+	return (root);
 }
 
 /**
