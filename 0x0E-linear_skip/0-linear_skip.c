@@ -26,7 +26,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	{
 		while (l->express)
 		{
-			if (l->express->n < value)
+			if (l->express->n <= value)
 			{
 				l = l->express;
 				save = l;
