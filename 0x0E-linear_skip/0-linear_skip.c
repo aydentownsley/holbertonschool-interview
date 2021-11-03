@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "search.h"
-#define LEX list->express
-#define IX index
 
 /**
  * linear_skip - searches for an int in a skip list
@@ -26,25 +24,25 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	{
 		while (l->express)
 		{
-			if (l->express->n <= value)
+			if (l->express->n < value)
 			{
 				l = l->express;
 				save = l;
-				printf("Value checked at index [%lu] = [%d]\n", save->IX, save->n);
+				printf("Value checked at index [%lu] = [%d]\n", save->index, save->n);
 			}
 			else
 			{
-				printf("Value checked at index [%lu] = [%d]\n", LEX->IX, LEX->n);
+				printf("Value checked at index [%lu] = [%d]\n", l->express->index, l->express->n);
 				break;
 			}
 		}
 		if (l->express)
-			printf("Value found between indexes [%lu] and [%lu]\n", l->IX, LEX->IX);
+			printf("Value found between indexes [%lu] and [%lu]\n", l->index, l->express->index);
 		else
-			printf("Value found between indexes [%lu] and [%lu]\n", l->IX, size - 1);
+			printf("Value found between indexes [%lu] and [%lu]\n", l->index, size - 1);
 		for (save = l; l != NULL; l = l->next)
 		{
-			printf("Value checked at index [%lu] = [%d]\n", l->IX, l->n);
+			printf("Value checked at index [%lu] = [%d]\n", l->index, l->n);
 			if (l->n == value)
 			{
 				return (l);
