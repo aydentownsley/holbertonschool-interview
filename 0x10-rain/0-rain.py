@@ -40,23 +40,23 @@ def rain(walls):
     # creates slices of lists for recursion
     left_walls = walls[0:l_idx + 1]
     right_walls = walls[r_idx:len(walls) - 1]
-    print(left_walls)
-    print(right_walls)
+    # print(left_walls)
+    # print(right_walls)
 
     # calculates area between walls and subtracts height of
     # walls in between
     if mx_0 >= mx_1:
         for x in range(l_idx + 1, r_idx):
             neg_area -= walls[x]
-            print("na: {}".format(neg_area))
+            # print("na: {}".format(neg_area))
         area = mx_1 * (r_idx - l_idx - 1)
-        print("area_0: {}".format(area))
+        # print("area_0: {}".format(area))
         area += neg_area
-        print("area_1: {}".format(area))
+        # print("area_1: {}".format(area))
     else:
         for x in range(l_idx + 1, r_idx):
             neg_area -= walls[x]
-            print("na: {}".format(neg_area))
+            # print("na: {}".format(neg_area))
         area = mx_0 * (r_idx - l_idx - 1)
         area += neg_area
 
