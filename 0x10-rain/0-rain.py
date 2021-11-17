@@ -35,7 +35,7 @@ def rain(walls):
         l_idx = index_mx_1
         r_idx = walls.index(mx_0)
 
-	 # creates slices of lists for recursion
+    # creates slices of lists for recursion
     left_walls = walls[0:l_idx + 1]
     right_walls = walls[r_idx:len(walls)]
 
