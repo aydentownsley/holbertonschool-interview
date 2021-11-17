@@ -36,10 +36,11 @@ def rain(walls):
     else:
         l_idx = index_mx_1
         r_idx = walls.index(mx_0)
+    # print("l: {}, r: {}".format(l_idx, r_idx))
 
     # creates slices of lists for recursion
     left_walls = walls[0:l_idx + 1]
-    right_walls = walls[r_idx:len(walls) - 1]
+    right_walls = walls[r_idx:len(walls)]
     # print(left_walls)
     # print(right_walls)
 
@@ -58,7 +59,9 @@ def rain(walls):
             neg_area -= walls[x]
             # print("na: {}".format(neg_area))
         area = mx_0 * (r_idx - l_idx - 1)
+        # print("area_0: {}".format(area))
         area += neg_area
+        # print("area_1: {}".format(area))
 
     # adds recursed area to area
     area += rain(left_walls)
