@@ -45,7 +45,7 @@ unsigned int high, size_t size, int value)
 {
 	unsigned int mid = 0;
 
-	sleep(1);
+
 
 	high = size - 1;
 	mid = (high + low) / 2;
@@ -54,7 +54,7 @@ unsigned int high, size_t size, int value)
 	{
 		if (array[mid] == value)
 		{
-			printf("==\n");
+
 			if (array[mid - 1] == value && mid != 1)
 			{
 				print_array(&array[low], high - mid);
@@ -65,13 +65,13 @@ unsigned int high, size_t size, int value)
 		}
 		if (array[mid] > value)
 		{
-			printf(">\n");
+
 			print_array(&array[low], high - mid);
 			return (adv_bin_help(array, low, mid, mid + 1, value));
 		}
 		if (array[mid] < value)
 		{
-			printf("<\n");
+
 			print_array(&array[mid + 1], high - (mid));
 			return (adv_bin_help(array, mid + 1, high - mid, size, value));
 		}
