@@ -54,24 +54,24 @@ unsigned int high, size_t size, int value)
 	{
 		if (array[mid] == value)
 		{
-
+			printf("==\n");
 			if (array[mid - 1] == value && mid != 1)
 			{
 				print_array(&array[low], high - mid + 1);
-				adv_bin_help(array, low, high, mid + 1, value);
+				adv_bin_help(array, low, high, mid, value);
 				return (mid - 1);
 			}
 			return (mid);
 		}
 		if (array[mid] > value)
 		{
-
+			printf(">\n");
 			print_array(&array[low], high - mid + 1);
 			return (adv_bin_help(array, low, mid, mid + 1, value));
 		}
 		if (array[mid] < value)
 		{
-
+			printf("<\n");
 			print_array(&array[mid + 1], high - (mid));
 			return (adv_bin_help(array, mid + 1, high - mid, size, value));
 		}
