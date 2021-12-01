@@ -1,4 +1,5 @@
 #include "search_algos.h"
+#include <unistd.h>
 
 /**
  * print_array - prints array (or section of) being searched
@@ -13,7 +14,7 @@ void print_array(int *array, size_t size)
 {
 	unsigned int i;
 
-	if (size == 0)
+	if (size <= 0)
 		return;
 
 	printf("Searching in array: ");
@@ -24,6 +25,55 @@ void print_array(int *array, size_t size)
 		else
 			printf("%d, ", array[i]);
 	}
+}
+
+/**
+ * adv_bin_help - add extra passable variable to help
+ * keep track of elements are recusrion happens
+ *
+ * @array: array to search
+ * @low: low value
+ * @high: high value
+ * @size: size of array
+ * @value: value to look for
+ *
+ * Return: VALUE if found
+ * -1 if not
+ */
+int adv_bin_help(int *array, unsigned int low,
+unsigned int high, size_t size, int value)
+{
+	unsigned int mid = 0;
+
+
+	high = size - 1;
+	mid = (high + low) / 2;
+
+	if (low <= high)
+	{
+		if (array[mid] == value)
+		{
+			if (array[mid - 1] == value && mid != 1)
+			{
+				print_array(&array[low], high - mid);
+				adv_bin_help(array, low, high, mid + 1, value);
+				return (mid - 1);
+			}
+			return (mid);
+		}
+		if (array[mid] > value)
+		{
+			print_array(&array[mid - 1], high - mid);
+			return (adv_bin_help(array, mid - 1, mid - low, size, value));
+		}
+		if (array[mid] < value)
+		{
+			print_array(&array[mid + 1], high - mid);
+			return (adv_bin_help(array, mid + 1, high - mid, size, value));
+		}
+	}
+
+	return (-1);
 }
 
 /**
@@ -38,36 +88,12 @@ void print_array(int *array, size_t size)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	unsigned int high = 0, mid = 0, low = 0;
+	unsigned int low = 0, high = 0;
 
 	if (array == NULL || size == 0)
 		return (-1);
 
 	high = size - 1;
-
 	print_array(array, size);
-
-	while (low <= high)
-	{
-		mid = (high + low) / 2;
-
-		if (array[mid] == value)
-		{
-			if (array[mid - 1] == value && mid != 1)
-				mid = advanced_binary(array, mid + 1, value);
-			return (mid);
-		}
-		else if (array[mid] > value)
-		{
-			high = mid - 1;
-			print_array(&array[high], mid - low);
-		}
-		else if (array[mid] < value)
-		{
-			print_array(&array[mid + 1], high - mid);
-			low = mid + 1;
-		}
-	}
-
-	return (-1);
+	return (adv_bin_help(array, low, high, size, value));
 }
