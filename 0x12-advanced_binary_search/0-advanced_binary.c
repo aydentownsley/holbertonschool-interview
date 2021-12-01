@@ -43,17 +43,17 @@ int adv_bin_help(int *array, unsigned int low, size_t size, int value)
 {
 	unsigned int mid = 0;
 
-	mid = ((size - 1) + low) / 2;
+	mid = (size + low) / 2;
 
-	if (low <= (size - 1))
+	if (low <= size)
 	{
 		if (array[mid] == value)
 		{
 			/*printf("==\n");*/
 			if (array[mid - 1] == value && mid != 1)
 			{
-				print_array(&array[low], (size - 1) - mid);
-				adv_bin_help(array, low, mid + 1, value);
+				print_array(&array[low], size - mid + 1);
+				adv_bin_help(array, low, mid - 1, value);
 				return (mid - 1);
 			}
 			return (mid);
@@ -61,13 +61,13 @@ int adv_bin_help(int *array, unsigned int low, size_t size, int value)
 		if (array[mid] > value)
 		{
 			/*printf(">\n");*/
-			print_array(&array[low], (size - 1) - mid + 1);
+			print_array(&array[low], size - mid + 1);
 			return (adv_bin_help(array, low, mid + 1, value));
 		}
 		if (array[mid] < value)
 		{
 			/*printf("<\n");*/
-			print_array(&array[mid + 1], (size - 1) - (mid));
+			print_array(&array[mid + 1], size - mid);
 			return (adv_bin_help(array, mid + 1, size - 1, value));
 		}
 	}
@@ -93,5 +93,5 @@ int advanced_binary(int *array, size_t size, int value)
 		return (-1);
 
 	print_array(array, size);
-	return (adv_bin_help(array, low, size, value));
+	return (adv_bin_help(array, low, size - 1, value));
 }
