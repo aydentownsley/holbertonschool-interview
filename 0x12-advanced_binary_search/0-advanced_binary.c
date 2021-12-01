@@ -10,7 +10,7 @@
  * Return: None
  */
 
-void print_array(int *array, size_t size)
+void print_array(int *array, size_t low, size_t size)
 {
 	unsigned int i;
 
@@ -18,12 +18,12 @@ void print_array(int *array, size_t size)
 		return;
 
 	printf("Searching in array: ");
-	for (i = 0; i < size; i++)
+	for (i = low; i <= size; i++)
 	{
-		if (i == size - 1)
-			printf("%d\n", array[i]);
-		else
+		if (i < size)
 			printf("%d, ", array[i]);
+		else
+			printf("%d\n", array[i]);
 	}
 }
 
@@ -39,9 +39,9 @@ void print_array(int *array, size_t size)
  * Return: VALUE if found
  * -1 if not
  */
-int adv_bin_help(int *array, unsigned int low, size_t size, int value)
+int adv_bin_help(int *array, size_t low, size_t size, int value)
 {
-	unsigned int mid = 0;
+	size_t mid = 0;
 
 	mid = (size + low) / 2;
 
@@ -50,25 +50,22 @@ int adv_bin_help(int *array, unsigned int low, size_t size, int value)
 		if (array[mid] == value)
 		{
 			/*printf("==\n");*/
-			if (array[mid - 1] == value && mid != 1)
-			{
-				print_array(&array[low], size - mid + 1);
-				adv_bin_help(array, low, mid - 1, value);
-				return (mid - 1);
-			}
-			return (mid);
+			print_array(array, low, size);
+			if (array[mid - 1] == value && mid != 0)
+				adv_bin_help(array, low, mid, value);
+			return (mid - 1);
 		}
 		if (array[mid] > value)
 		{
 			/*printf(">\n");*/
-			print_array(&array[low], size - mid + 1);
-			return (adv_bin_help(array, low, mid + 1, value));
+			print_array(array, low, size);
+			return (adv_bin_help(array, low, mid, value));
 		}
 		if (array[mid] < value)
 		{
 			/*printf("<\n");*/
-			print_array(&array[mid + 1], size - mid);
-			return (adv_bin_help(array, mid + 1, size - 1, value));
+			print_array(array, low, size);
+			return (adv_bin_help(array, mid + 1, size, value));
 		}
 	}
 
@@ -92,6 +89,5 @@ int advanced_binary(int *array, size_t size, int value)
 	if (array == NULL || size == 0)
 		return (-1);
 
-	print_array(array, size);
 	return (adv_bin_help(array, low, size - 1, value));
 }
