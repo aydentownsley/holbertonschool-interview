@@ -58,7 +58,7 @@ unsigned int high, size_t size, int value)
 			if (array[mid - 1] == value && mid != 1)
 			{
 				print_array(&array[low], high - mid + 1);
-				adv_bin_help(array, low, high, mid, value);
+				adv_bin_help(array, low, high, mid + 1, value);
 				return (mid - 1);
 			}
 			return (mid);
