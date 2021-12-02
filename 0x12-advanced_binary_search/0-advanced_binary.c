@@ -5,6 +5,7 @@
  * print_array - prints array (or section of) being searched
  *
  * @size: size of array
+ * @low: low value
  * @array: array
  *
  * Return: None
@@ -52,7 +53,7 @@ int adv_bin_help(int *array, size_t low, size_t size, int value)
 			/*printf("==\n");*/
 			print_array(array, low, size);
 			if (array[mid - 1] == value && mid != 0)
-				adv_bin_help(array, low, mid, value);
+				return(adv_bin_help(array, low, mid, value));
 			return (mid);
 		}
 		if (array[mid] > value)
