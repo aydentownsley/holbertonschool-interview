@@ -53,7 +53,7 @@ int adv_bin_help(int *array, size_t low, size_t size, int value)
 			print_array(array, low, size);
 			if (array[mid - 1] == value && mid != 0)
 				adv_bin_help(array, low, mid, value);
-			return (mid - 1);
+			return (mid);
 		}
 		if (array[mid] > value)
 		{
