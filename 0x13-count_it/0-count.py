@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-import requests
-import sys
 """ Query reddit api for hot articles from
     a given subreddit and count given keywords
 """
+import requests
+import sys
 
 
 def count_words(subreddit, word_list, count=0):
