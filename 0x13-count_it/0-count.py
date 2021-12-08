@@ -21,8 +21,8 @@ def count_words(subreddit, word_list, count=0):
     data = response.json()
     for value in response.json()['data']['children']:
         for res in value['data'].items():
-            if res[0].lower() == 'title':
-                if word_list[count] in res[1]:
+            if res[0] == 'title':
+                if word_list[count] in res[1].lower():
                     number += 1
     if count + 1 < len(word_list):
         count_words(subreddit, word_list, count + 1)
