@@ -44,5 +44,5 @@ def count_words(subreddit, word_list, counts={}, after=None):
     if after:
         return (count_words(subreddit, word_list, counts, after))
 
-    for key in sorted(counts, key=counts.get, reverse=True):
+    for key in sorted(counts, key=counts.get, reverse=False):
         print("{}: {}".format(key, counts[key]))
