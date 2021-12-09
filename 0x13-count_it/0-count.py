@@ -19,13 +19,6 @@ def count_words(subreddit, word_list, counts={}, after=None):
     else:
         url = "http://api.reddit.com/r/{}/hot".format(subreddit)
 
-    new_list = []
-    for i in word_list:
-        i.lower()
-    for i in word_list:
-        if i not in new_list:
-            new_list.append(i)
-
     headers = {'User-Agent': 'parse_hot'}
     response = requests.get(url, headers=headers)
 
@@ -39,7 +32,7 @@ def count_words(subreddit, word_list, counts={}, after=None):
 
     for value in data['data']['children']:
         for res in value['data']['title'].split():
-            for i in new_list:
+            for i in word_list:
                 if i.lower() == res.lower():
                     if i.lower() in counts.keys():
                         counts[i.lower()] += 1
