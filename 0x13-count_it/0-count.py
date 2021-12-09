@@ -3,6 +3,7 @@
     a given subreddit and count given keywords
 """
 import requests
+import operator
 
 
 def count_words(subreddit, word_list, counts={}, after=None):
@@ -44,5 +45,6 @@ def count_words(subreddit, word_list, counts={}, after=None):
     if after:
         return (count_words(subreddit, word_list, counts, after))
 
-    for key in sorted(counts, key=counts.get, reverse=True):
-        print('{}: {}'.format(key, counts[key]))
+    for key in sorted(counts.items(), key=operator.itemgetter(1),
+                      reverse=True):
+        print("{}: {}".format(key[0], key[1]))
