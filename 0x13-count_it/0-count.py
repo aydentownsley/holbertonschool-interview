@@ -30,19 +30,19 @@ def count_words(subreddit, word_list, counts={}, after=None):
     if 'data' not in data:
         return None
 
-    for value in data['data']['children']:
-        for res in value['data']['title'].split():
-            for i in word_list:
-                if i.lower() == res.lower():
-                    if i.lower() in counts.keys():
-                        counts[i.lower()] += 1
+    for result in data['data']['children']:
+        for word in result['data']['title'].split():
+            for find in word_list:
+                if find.lower() == word.lower():
+                    if find.lower() in counts.keys():
+                        counts[find.lower()] += 1
                     else:
-                        counts[i.lower()] = 1
+                        counts[find.lower()] = 1
 
     after = data['data']['after']
 
     if after:
         return (count_words(subreddit, word_list, counts, after))
 
-    for key in sorted(counts, key=counts.get, reverse=False):
-        print("{}: {}".format(key, counts[key]))
+    for key in sorted(counts, key=counts.get, reverse=True):
+        print('{}: {}'.format(key, counts[key]))
