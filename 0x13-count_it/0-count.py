@@ -2,8 +2,8 @@
 """ Query reddit api for hot articles from
     a given subreddit and count given keywords
 """
-import requests
 import operator
+import requests
 
 
 def count_words(subreddit, word_list, counts={}, after=None):
