@@ -29,7 +29,7 @@ def count_words(subreddit, word_list, count=0):
     data = response.json()
     for value in response.json()['data']['children']:
         for res in value['data'].items():
-            if res[0] == 'title':
+            if res[0] == 'title' or res[0] == 'selftext':
                 if new_list[count] in res[1].lower():
                     tile_arr = res[1].lower().split()
                     for i in tile_arr:
