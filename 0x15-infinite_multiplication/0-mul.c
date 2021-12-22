@@ -16,8 +16,8 @@ void pr(char to_print[]);
  */
 int main(int argc, char *argv[])
 {
-	int a[1000], b[1000];
-	int ans[2001] = {0};
+	int a[5000], b[5000];
+	int ans[100001] = {0};
 	int i, j, tmp, l1, l2;
 
 	if (argc != 3)
