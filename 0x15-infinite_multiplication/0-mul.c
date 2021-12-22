@@ -39,6 +39,12 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
+	if (argv[1][0] == '0' || argv[2][0] == '0')
+	{
+		_putchar('0');
+		_putchar(10);
+		exit(0);
+	}
 	l1 = strlen(argv[1]);
 	l2 = strlen(argv[2]);
 
