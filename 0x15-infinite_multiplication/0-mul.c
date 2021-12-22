@@ -4,6 +4,7 @@
 
 int _putchar(char c);
 void pr(char to_print[]);
+int checkInt(int *num);
 
 /**
  * main - handles input and mult
@@ -27,6 +28,12 @@ int main(int argc, char *argv[])
 	}
 
 	if (argv == NULL)
+	{
+		pr("Error\n");
+		exit(98);
+	}
+
+	if (checkInt(a) || checkInt(b))
 	{
 		pr("Error\n");
 		exit(98);
@@ -67,7 +74,7 @@ int main(int argc, char *argv[])
 		_putchar(ans[i] + '0');
 	}
 	_putchar(10);
-	return (0);
+	exit(0);
 }
 
 /**
@@ -86,4 +93,24 @@ void pr(char to_print[])
 		_putchar(to_print[i]);
 		++i;
 	}
+}
+
+/**
+ * checkInt - check int array for non int values
+ *
+ * @num: array to be checked
+ *
+ * Return: -1 if not a true int
+ */
+int checkInt(int *num)
+{
+	int i = 0;
+
+	while (num[i] != '\0')
+	{
+		if (num[i] <= 47 || num[i] >= 57)
+			return (-1);
+	}
+
+	return (0);
 }
