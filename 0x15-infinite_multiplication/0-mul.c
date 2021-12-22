@@ -114,8 +114,9 @@ int checkInt(char *num)
 
 	while (num[i] != '\0')
 	{
-		if (num[i] <= 47 || num[i] >= 57)
+		if (num[i] < 48 || num[i] > 57)
 			return (-1);
+		++i;
 	}
 
 	return (0);
