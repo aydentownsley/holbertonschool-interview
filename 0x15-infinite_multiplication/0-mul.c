@@ -4,7 +4,7 @@
 
 int _putchar(char c);
 void pr(char to_print[]);
-int checkInt(int *num);
+int checkInt(char *num);
 
 /**
  * main - handles input and mult
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	if (checkInt(a) || checkInt(b))
+	if (checkInt(argv[1]) || checkInt(argv[2]))
 	{
 		pr("Error\n");
 		exit(98);
@@ -108,7 +108,7 @@ void pr(char to_print[])
  *
  * Return: -1 if not a true int
  */
-int checkInt(int *num)
+int checkInt(char *num)
 {
 	int i = 0;
 
