@@ -10,11 +10,11 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	if (head == NULL)
-		return (NULL);
-
 	listint_t *slow = head;
 	listint_t *skip = head;
+
+	if (head == NULL)
+		return (NULL);
 
 	slow = slow->next;
 	skip = skip->next->next;
