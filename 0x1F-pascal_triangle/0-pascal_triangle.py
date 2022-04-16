@@ -4,12 +4,9 @@
 """
 
 
-def pascal_triangel(n):
+def pascal_triangle(n):
 	"""
-	n: size of triangle to create
-
-	return a 2D array representing
-	a pascal triangle of n size
+		n: size of triangle to create
 	"""
 
 	# define triangle array and "tip" of triangle
