@@ -6,7 +6,7 @@
 
 def pascals_triangel(n):
 	"""
-		n: size of triangle to create
+		n: size of triangle
 	"""
 	triangle =[]
 	row = [1]
