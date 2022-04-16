@@ -7,12 +7,7 @@
 def pascals_triangel(n):
 	"""
 		n: size of triangle to create
-
-		return a 2D array representing
-		a pascal triangle of n size
 	"""
-
-	# define triangle array and "tip" of triangle
 	triangle =[]
 	row = [1]
 
